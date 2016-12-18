@@ -12,6 +12,7 @@ import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.boot.test.WebIntegrationTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
+import spock.lang.Ignore
 
 /**
  * @author bartosz.walacik
@@ -29,15 +30,17 @@ class JaversBootSqlIntegrationSpec extends Specification {
     @Autowired
     Javers javers
 
+    //@Ignore
     def "should save Employee audit using @SpringDataAuditableAspect"() {
+        given:
+        def  person =  new Person(firstName:"mad", lastName:"kaz")
 
         when:
-        def  person =  new Person(firstName:"mad", lastName:"kaz")
         personRepository.save(person)
         employeeRepository.save(new Employee(domainName: "kaz", person: person))
-        def snapshots = javers.findSnapshots(QueryBuilder.byInstanceId("kaz", Employee).build())
 
         then:
+        def snapshots = javers.findSnapshots(QueryBuilder.byInstanceId("kaz", Employee).build())
         snapshots.size() == 1
         snapshots[0].commitMetadata.author == "mr Bean"
         snapshots[0].globalId.value() == Employee.getName()+"/kaz"

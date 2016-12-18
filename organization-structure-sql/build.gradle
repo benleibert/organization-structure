@@ -5,8 +5,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
     compile "org.javers:javers-spring-boot-starter-sql:$javersVersion"
 
-    compile 'com.h2database:h2:1.4.191'
- //   compile 'postgresql:postgresql:9.1-901-1.jdbc4'
+    //compile 'com.h2database:h2:1.4.191'
+    compile 'postgresql:postgresql:9.1-901-1.jdbc4'
 
     testCompile 'com.squareup.okhttp3:okhttp:3.1.2'
     

@@ -1,18 +1,16 @@
 package org.javers.organization.structure.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
 public class Person {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="person_sequence", sequenceName="person_sequence", allocationSize=50)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="person_sequence") //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String firstName;
     private String lastName;
     private Sex sex;

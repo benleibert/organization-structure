@@ -9,6 +9,7 @@ import org.javers.organization.structure.SqlApplication
 import org.javers.organization.structure.ui.PersonDto
 import spock.lang.Specification
 import spock.lang.Stepwise
+import spock.lang.Ignore
 
 import static okhttp3.RequestBody.create
 
@@ -27,6 +28,7 @@ class AuditControllerSpec extends Specification {
         jsonSlupler = new JsonSlurper()
     }
 
+    //@Ignore
     def "should create new object snapshot"() {
         given:
         def personDto = new PersonDto(1, "bob", "bob", "MALE", 1000, "DEVELOPER")
@@ -47,6 +49,7 @@ class AuditControllerSpec extends Specification {
         snapshots[0].version == 1
     }
 
+    //@Ignore
     def "should find person changes"() {
         given:
         def personDto = new PersonDto(1, "bob", "bob", "MALE", 2000, "DEVELOPER")

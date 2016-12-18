@@ -12,6 +12,7 @@ import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.boot.test.WebIntegrationTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
+import spock.lang.Ignore
 
 /**
  * @author bartosz.walacik
@@ -29,6 +30,7 @@ class JaversBootMongoIntegrationSpec extends Specification {
     @Autowired
     Javers javers
 
+    @Ignore
     def "should save Employee audit using @SpringDataAuditableAspect"() {
 
         when:
